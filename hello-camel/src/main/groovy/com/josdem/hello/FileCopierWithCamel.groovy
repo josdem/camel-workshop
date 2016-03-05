@@ -1,13 +1,28 @@
 package com.josdem.hello
 
-class FileCopierWithCamel {
-  CamelContext context = new DefaultCamelContext()
+import org.apache.camel.CamelContext
+import org.apache.camel.impl.DefaultCamelContext
+import org.apache.camel.builder.RouteBuilder
 
-  def copy(String source, String destination){
+class FileCopierWithCamel {
+  CamelContext context
+  String source = "src/main/resources/source"
+  String destination = "src/main/resources/destination"
+
+  FileCopierWithCamel(){
+    context = new DefaultCamelContext()
     context.addRoutes(new RouteBuilder(){
       void configure(){
-        from("file:${source}?noop=true".to("file:${destination}"))
+        from("file:${source}?noop=true").to("file:${destination}")
       }
     })
+  }
+
+  def start(){
+    context.start()
+  }
+
+  def stop(){
+    context.stop()
   }
 }

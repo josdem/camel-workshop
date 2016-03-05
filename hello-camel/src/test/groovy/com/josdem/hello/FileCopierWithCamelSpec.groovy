@@ -7,13 +7,14 @@ class FileCopierWithCamelSpec extends Specification {
   FileCopierWithCamel copier = new FileCopierWithCamel()
 
   void "should copy a file using camel"(){
-  given:"A source file"
-    File source = new File("src/groovy/com/josdem/hello/resources/source.txt")
-  and:"A destination file"
-    File destination = new File("src/groovy/com/josdem/hello/resources/destination.txt")
-  when:"We send a copy action"
-    copier.copy(source,destination)
+  given:"An camel context intialization "
+    copier.start()
+  when:"We wait for camel copy a file and stop context"
+    Thread.sleep(5000)
+    copier.stop()
   then:"We expect file copied"
-    destination.text = 'Hello Camel'
+    File destination = new File("src/main/resources/destination/message.txt")
+    destination.text.contains('Hello Camel')
   }
+
 }
