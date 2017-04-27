@@ -1,0 +1,39 @@
+buildscript {
+  ext {
+    springBootVersion = '1.5.1.RELEASE'
+    apacheCamelVersion = '2.17.0'
+    cglibVersion = '3.2.4'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: "groovy"
+apply plugin: "application"
+apply plugin: 'org.springframework.boot'
+
+jar {
+  baseName = 'mailbox-reader'
+  version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter'
+  compile 'org.codehaus.groovy:groovy'
+  compile "org.apache.camel:camel-core:$apacheCamelVersion"
+  compile "org.apache.camel:camel-mail:$apacheCamelVersion"
+  compile "org.apache.camel:camel-http:$apacheCamelVersion"
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
+  testCompile 'org.spockframework:spock-spring:'
+  testCompile "cglib:cglib-nodep:$cglibVersion"
+}
