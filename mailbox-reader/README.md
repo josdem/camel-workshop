@@ -37,6 +37,7 @@ gradle build
 
 #### Read this as reference
 
+* http://josdem.io/techtalk/camel/mailbox_reader/
 * http://josdem.io/techtalk/spring/spring_unit_testing_spock/
 * http://josdem.io/techtalk/spring/spring_boot/
 * http://josdem.io/techtalk/java/s3_aws_lambda/
